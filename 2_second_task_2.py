@@ -1,5 +1,5 @@
 """ 
-Оценка сложности: 7/10
+Оценка сложности: O(n * n)
 """
 
 
@@ -7,32 +7,25 @@ def get_unique_values(text: list) -> str:
     dash = "-"
     sorted_list = []
     indexies = []
-    default_text: str = "".join(text)
-    for index, letter in enumerate(text):
-        print(dash * 20)
-        index_letter = default_text.index(letter)
-        find_letter = default_text.find(letter)
-        print("find:", find_letter)
-        print("index():", index_letter)
-        print("letter:", letter)
-        print("index:", index)
-        print(dash * 20)
-        if index_letter not in indexies:
-            indexies.append(index_letter)
+    default_text: str = "".join(text)  # O(1)
+    for index, letter in enumerate(text):  # for & enumirate = O(n)
+        index_letter = default_text.index(letter) # O(n)
+        if index_letter not in indexies: # O(n)
+            indexies.append(index_letter) # O(1)
         else:
             print("else")
             pass
     else:
-        for index, letter in enumerate(text):
-            for sorted_index in indexies:
-                if index == sorted_index:
-                    sorted_list.append(letter)
+        for index, letter in enumerate(text): # O(n)
+            for sorted_index in indexies: # O(n)
+                if index == sorted_index: # O(1)
+                    sorted_list.append(letter) # O(1)
         else:
             return "".join(sorted_list)
 
 
 try:
-    string: list = list(input("Введите текст\n>>>"))
+    string: list = list(input("Введите текст\n>>>"))  # O(n)
 except Exception as error:
     print(f"Произошла ошибка, повторите попытку.\n{error}")
 else:

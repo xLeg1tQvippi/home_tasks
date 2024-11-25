@@ -1,16 +1,16 @@
 """ 
-Оценка сложности: 4/10
+Оценка сложности: O(n)
 """
 
 
 def get_unique_values(text: list) -> str:
-    sorted_text: list = list(set(text))
-    new_text: str = "".join(sorted_text)
+    sorted_text: list = list(set(text))  # O(n)
+    new_text: str = "".join(sorted_text)  # O(k)
     return new_text
 
 
 try:
-    string: list = list(input("Введите текст\n>>>"))
+    string: list = list(input("Введите текст\n>>>"))  # O(n)
 except Exception as error:
     print(f"Произошла ошибка, повторите попытку.\n{error}")
 else:

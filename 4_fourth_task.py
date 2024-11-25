@@ -18,7 +18,9 @@ elif ben:
     return ben's number
     
     
-Оценка сложности: 6/10
+Оценка сложности: O(k * n)
+k - количество команд
+n - количество контактов
 """
 
 file_name = "u_fourth_contact_dictionary.py"
@@ -26,19 +28,21 @@ file_name = "u_fourth_contact_dictionary.py"
 
 def check_data_file() -> dict:
     try:
-        from fourth_contact_dictionary import contacts
+        from fourth_contact_dictionary import (
+            contacts,
+        )  # Зависит от размера файла # O(n)
     except Exception as error:
         with open(file_name, "w") as file:
-            file.write("contacts = {}")
+            file.write("contacts = {}")  # O(1) - простая запись строки в файл
     else:
         return contacts
 
 
 def rewriting_contact_number(name: str, number: str, contact_book: dict):
-    previous_contact_number: str = contact_book[name]
-    contact_book[name] = number
+    previous_contact_number: str = contact_book[name]  # O(1)
+    contact_book[name] = number  # O(1)
     with open(file_name, "w") as file:
-        file.write(f"contacts = {contact_book}")
+        file.write(f"contacts = {contact_book}")  # O(n)
     print(
         f"Предыдущий номер контакта {name}: {previous_contact_number}\nУспешно перезаписан на новый номер: {number}"
     )
@@ -46,7 +50,7 @@ def rewriting_contact_number(name: str, number: str, contact_book: dict):
 
 def get_contact_information(name: str, contact_book: dict):
     try:
-        person_number: str = contact_book[name]
+        person_number: str = contact_book[name]  # O(1)
         print(f"Номер контакта {name}: {person_number}")
     except Exception as error:
         print(f"Введенный контакт {name} не найден в списке контактов.")
@@ -55,7 +59,7 @@ def get_contact_information(name: str, contact_book: dict):
 def search_info(data: str, contact_book: dict):
     # Получаем данные для запроса
     try:
-        data_unpacking: list = data.split(" ")
+        data_unpacking: list = data.split(" ")  # O(m) - m Длина строки
     except Exception as error:
         print(f"Произошла ошибка!\n{error}")
     else:
@@ -84,7 +88,7 @@ if __name__ == "__main__":
     print("Дoбро пожаловать в книгу контактов!\nВведите '.' чтобы выйти из программы.")
     while True:
         try:
-            command: str = input(">>>")
+            command: str = input(">>>")  # O(m)
         except Exception as error:
             print(f"Произошла ошибка!\n{error}")
             print("Пожалуйста введите еще раз.")
@@ -97,4 +101,6 @@ if __name__ == "__main__":
                 break
             else:
                 # Находим в списке введенные данные.
-                get_information = search_info(command, contact_book=contact_book)
+                get_information = search_info(
+                    command, contact_book=contact_book
+                )  # O(n)
